@@ -3,10 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.onoff.electronicjournal.mapper.BackMapper">
     <select id="queryJournal" resultType="cn.onoff.electronicjournal.model.Journal">
-       SELECT * FROM journal
+       SELECT
+journal.id,
+journal.title,
+journal.periodical,
+journal.intro,
+journal.pviews,
+picture.image_url
+FROM
+journal ,
+picture
+WHERE
+picture.cover = 1 AND
+picture.journal_id = journal.id
     </select>
-    <insert id="addJounal">
-      insert into journal (title,periodical,time,image_url,intro)
-VALUES(#{title},#{periodical},#{time},#{image_url},#{intro})
+    <insert id="addJounal" useGeneratedKeys="true" keyProperty="id"
+            parameterType="cn.onoff.electronicjournal.model.Journal">
+        insert into journal (title,periodical,time,intro)
+VALUES(#{title},#{periodical},#{time},#{intro})
+    </insert>
+    <insert id="addPicture" parameterType="cn.onoff.electronicjournal.model.Picture">
+        INSERT INTO picture (group_name,remote_file_name,journal_id,image_url,cover)
+VALUES (#{groupName},#{remoteFileName},#{journalId},#{imageUrl},#{cover})
     </insert>
 </mapper>

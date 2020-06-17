@@ -1,19 +1,9 @@
-function todel() {
-    var msg = "点击确定删除！"
-    if (confirm(msg) == true) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 window.onload = function () {
     var input = document.getElementById("file_input");
     var result;
+    var oSelect = document.getElementById("select");
     var dataArr = []; // 储存所选图片的结果(文件名和base64数据)
     var fd;  //FormData方式发送请求
-    var oAdd = document.getElementById("add");
-    var oSubmit = document.getElementById("submit");
     var oInput = document.getElementById("file_input");
 
     if (typeof FileReader === 'undefined') {
@@ -56,27 +46,20 @@ window.onload = function () {
                         oParent.style.paddingTop = (oParent.offsetHeight - nowHeight) / 2 + 'px';
                     }
                 }
-                div.onclick = function () {
-                    $(this).remove();                  // 在页面中删除该图片元素
-                }
+                // div.onclick = function(){
+                //     $(this).remove();                  // 在页面中删除该图片元素
+                // }
             }
         }
     }
 
-
-    oAdd.onclick = function () {
+    oSelect.onclick = function () {
         oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发
+        //清空已选图片
+        $('.float').remove();
         oInput.click();
     }
-
-
-    oSubmit.onclick = function () {
-        if (!dataArr.length) {
-            return alert('请先选择文件');
-        }
-    }
 }
-
 /*
  用ajax发送fd参数时要告诉jQuery不要去处理发送的数据，
  不要去设置Content-Type请求头才可以发送成功，否则会报“Illegal invocation”的错误，
@@ -102,6 +85,4 @@ function ReSizePic(ThisPic) {
         var reHeight = RePicWidth;
         ThisPic.height = reHeight;
     }
-
-
 }

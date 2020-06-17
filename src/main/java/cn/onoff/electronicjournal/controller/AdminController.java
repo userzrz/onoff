@@ -1,7 +1,7 @@
 package cn.onoff.electronicjournal.controller;
 
 import cn.onoff.electronicjournal.model.Admin;
-import cn.onoff.electronicjournal.model.DO.JournalDO;
+import cn.onoff.electronicjournal.model.VO.JournalVO;
 import cn.onoff.electronicjournal.service.AdminService;
 import cn.onoff.electronicjournal.utils.CommonUtils;
 import cn.onoff.electronicjournal.utils.MD5Utils;
@@ -38,7 +38,7 @@ public class AdminController {
      */
     @GetMapping(value = "/redact")
     public String redact(Model model) {
-        model.addAttribute("data", new JournalDO());
+        model.addAttribute("data", new JournalVO());
         return "redact";
     }
 

@@ -1,6 +1,8 @@
 package cn.onoff.electronicjournal.service;
 
+import cn.onoff.electronicjournal.model.DO.JournalDO;
 import cn.onoff.electronicjournal.model.Journal;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,12 +13,12 @@ public interface BackService {
      * @param journal
      * @return
      */
-    int addJounal(Journal journal);
+    int addJounal(Journal journal, MultipartFile[] files);
 
     /**
      * 查询全部电子刊
      *
      * @return
      */
-    List<Journal> queryJournal();
+    List<JournalDO> queryJournal();
 }

@@ -21,9 +21,9 @@ img {
 }
 
 
-/*#file_input{*/
-/*display: none;*/
-/*}*/
+#file_input {
+    display: none;
+}
 
 
 .delete {
@@ -42,7 +42,13 @@ img {
 }
 
 
-.delete:hover {
-    cursor: pointer;
-    opacity: 1;
+/*.delete:hover{*/
+/*cursor: pointer;*/
+/*opacity: 1;*/
+/*}*/
+
+.container_1 {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }

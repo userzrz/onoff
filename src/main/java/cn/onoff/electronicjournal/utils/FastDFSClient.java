@@ -39,7 +39,7 @@ public class FastDFSClient {
      * @return 文件路径
      * @throws java.io.IOException
      */
-    public static String saveFile(MultipartFile multipartFile) throws IOException {
+    public static String[] saveFile(MultipartFile multipartFile) throws IOException {
         String[] fileAbsolutePath = {};
         String fileName = multipartFile.getOriginalFilename();
         String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -60,8 +60,8 @@ public class FastDFSClient {
         if (fileAbsolutePath == null) {
             logger.error("upload file failed,please upload again!");
         }
-        String path = FastDFSClient.getTrackerUrl() + fileAbsolutePath[0] + "/" + fileAbsolutePath[1];
-        return path;
+//        String path = FastDFSClient.getTrackerUrl() + fileAbsolutePath[0] + "/" + fileAbsolutePath[1];
+        return fileAbsolutePath;
     }
 
     /**

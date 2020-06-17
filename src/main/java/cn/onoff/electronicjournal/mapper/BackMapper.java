@@ -1,6 +1,8 @@
 package cn.onoff.electronicjournal.mapper;
 
+import cn.onoff.electronicjournal.model.DO.JournalDO;
 import cn.onoff.electronicjournal.model.Journal;
+import cn.onoff.electronicjournal.model.Picture;
 
 import java.util.List;
 
@@ -18,13 +20,21 @@ public interface BackMapper {
      * @param journal
      * @return
      */
-    int addJounal(Journal journal);
+    Integer addJounal(Journal journal);
+
+    /**
+     * 新增图片信息
+     *
+     * @param picture
+     * @return
+     */
+    int addPicture(Picture picture);
 
     /**
      * 查询全部电子刊
      *
      * @return
      */
-    List<Journal> queryJournal();
+    List<JournalDO> queryJournal();
 
 }
