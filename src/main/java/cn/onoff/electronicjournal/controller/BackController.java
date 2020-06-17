@@ -1,9 +1,8 @@
 package cn.onoff.electronicjournal.controller;
 
-import cn.onoff.electronicjournal.model.DO.JournalDO;
+import cn.onoff.electronicjournal.model.VO.JournalVO;
 import cn.onoff.electronicjournal.model.Journal;
 import cn.onoff.electronicjournal.service.BackService;
-import cn.onoff.electronicjournal.utils.FastDFSClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 
 /**
@@ -43,23 +40,23 @@ public class BackController {
 
 
     @PostMapping(value = "/add")
-    public String addJournal(@ModelAttribute JournalDO journalDO) {
-
-        Journal journal = new Journal();
-        journal.setTitle(journalDO.getTitle());
-        try {
-            journal.setImage_url(FastDFSClient.saveFile(journalDO.getFiles()[0]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (MultipartFile file : journalDO.getFiles()) {
-            log.info(file.getName() + "<<-------------------<<");
-        }
-        journal.setPeriodical(journalDO.getPeriodical());
-        journal.setIntro(journalDO.getIntro());
-        journal.setTime(Calendar.getInstance().getTimeInMillis());
-        service.addJounal(journal);
+    public String addJournal(@ModelAttribute JournalVO journalVO) {
+        Journal journal = new Journal(journalVO.getTitle(), journalVO.getPeriodical(), Calendar.getInstance().getTimeInMillis(), journalVO.getIntro());
+        service.addJounal(journal, journalVO.getFiles());
         return "redirect:/index";
+    }
+
+    @PostMapping(value = "/a")
+    public String add(MultipartFile[] file) {
+        for (MultipartFile f : file) {
+            log.info(f.getOriginalFilename() + "<<-------------------<<");
+        }
+        return "";
+    }
+
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
     }
 
     @GetMapping(value = "/delete")
