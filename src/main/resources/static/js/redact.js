@@ -1,3 +1,21 @@
+function todel() {
+    var msg = "确定删除吗？";
+    if (confirm(msg) == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function exit() {
+    var msg = "确定退出登录吗？";
+    if (confirm(msg) == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 window.onload = function () {
     var input = document.getElementById("file_input");
     var result;

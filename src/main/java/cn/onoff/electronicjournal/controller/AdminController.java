@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,7 +29,10 @@ public class AdminController {
 
 
     @GetMapping(value = {"/", "login"})
-    public String login() {
+    public String login(HttpSession session) {
+        if (session.getAttribute(CommonUtils.ADMIN_SESSION) != null) {
+            return "redirect:/index";
+        }
         return "login";
     }
 
@@ -43,7 +48,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/log")
-    public String login(@ModelAttribute Admin admin, HttpSession session, Model model) {
+    public String login(@ModelAttribute Admin admin, HttpSession session, HttpServletResponse response, Model model) {
         if (StringUtils.isEmpty(admin.getAccount())
                 || StringUtils.isEmpty(admin.getPassword())) {
             model.addAttribute("msg", "用户名或密码不能为空");
@@ -52,14 +57,19 @@ public class AdminController {
         String pwd = MD5Utils.MD5Encode(admin.getPassword(), "utf8");
         admin = adminService.getAdmin(admin.getAccount(), pwd);
         if (admin != null) {
-            model.addAttribute("msg", "登录成功");
-            // 放入session
             session.setAttribute(CommonUtils.ADMIN_SESSION, admin);
             return "redirect:/index";
         } else {
             model.addAttribute("msg", "账号或密码错误");
             return "login";
         }
+    }
+
+
+    @GetMapping(value = "/exit")
+    public String exit(HttpSession session) {
+        session.invalidate();
+        return "login";
     }
 
 

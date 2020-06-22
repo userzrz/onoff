@@ -60,9 +60,8 @@ public class BackController {
     }
 
     @GetMapping(value = "/delete")
-    public String deleteJournal(String id, String image_url) {
-        log.info("------------------->id" + id + "------------url" + image_url);
-
+    public String deleteJournal(String id) {
+        service.deleteJounal(id);
         return "redirect:/index";
     }
 }

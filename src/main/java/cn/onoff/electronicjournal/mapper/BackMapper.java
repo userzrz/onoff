@@ -1,6 +1,7 @@
 package cn.onoff.electronicjournal.mapper;
 
 import cn.onoff.electronicjournal.model.DO.JournalDO;
+import cn.onoff.electronicjournal.model.DO.PictureDO;
 import cn.onoff.electronicjournal.model.Journal;
 import cn.onoff.electronicjournal.model.Picture;
 
@@ -36,5 +37,34 @@ public interface BackMapper {
      * @return
      */
     List<JournalDO> queryJournal();
+
+    /**
+     * 查询全部图片属性
+     *
+     * @return
+     */
+    List<PictureDO> queryAllPictureDO();
+
+    /**
+     * 查询指定图片属性
+     *
+     * @return
+     */
+    List<PictureDO> queryPictureDO(String journalId);
+
+    /**
+     * 删除指定图片信息
+     *
+     * @return
+     */
+    int deletePicture(String journalId);
+
+    /**
+     * 删除指定电子刊信息
+     *
+     * @return
+     */
+    int deleteJournal(String journalId);
+
 
 }

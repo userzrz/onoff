@@ -35,7 +35,7 @@
                 <a class="btn btn-secondary" href="redact.html" th:href="@{/redact}" role="button">新增电子刊</a>
             </div>
             <div class="ml-2">
-                <a class="btn btn-danger" href="#" role="button">退出登录</a>
+                <a class="btn btn-danger" th:href="@{/exit}" onclick="return exit()" role="button">退出登录</a>
             </div>
         </div>
     </nav>
@@ -51,6 +51,7 @@
                     the bulk of the
                     card's
                     content.</p>
+                <p class="font-weight-light" th:text="${j.pviews}"></p>
                 <a href="#" class="btn btn-outline-primary">编辑</a>
                 <a href="#" th:href="@{/delete(id=${j.id})}" onclick="return todel()"
                    class="btn btn-outline-danger">删除</a>

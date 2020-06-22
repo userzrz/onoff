@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.onoff.electronicjournal.mapper.BackMapper">
-    <select id="queryJournal" resultType="cn.onoff.electronicjournal.model.Journal">
+
+    <select id="queryJournal" resultType="cn.onoff.electronicjournal.model.DO.JournalDO">
        SELECT
 journal.id,
 journal.title,
@@ -17,13 +18,49 @@ WHERE
 picture.cover = 1 AND
 picture.journal_id = journal.id
     </select>
+
+    <select id="queryAllPictureDO" resultType="cn.onoff.electronicjournal.model.DO.PictureDO"
+            resultMap="pictureDOResultMap">
+       SELECT
+picture.group_name,
+picture.remote_file_name
+FROM
+picture
+    </select>
+
+    <select id="queryPictureDO" resultType="cn.onoff.electronicjournal.model.DO.PictureDO"
+            resultMap="pictureDOResultMap">
+       SELECT
+picture.group_name,
+picture.remote_file_name
+FROM
+picture
+WHERE
+picture.journal_id = #{journalId}
+    </select>
+
+    <resultMap id="pictureDOResultMap" type="cn.onoff.electronicjournal.model.DO.PictureDO">
+        <result property="groupName" column="group_name"/>
+        <result property="remoteFileName" column="remote_file_name"/>
+    </resultMap>
+
     <insert id="addJounal" useGeneratedKeys="true" keyProperty="id"
             parameterType="cn.onoff.electronicjournal.model.Journal">
         insert into journal (title,periodical,time,intro)
 VALUES(#{title},#{periodical},#{time},#{intro})
     </insert>
+
     <insert id="addPicture" parameterType="cn.onoff.electronicjournal.model.Picture">
         INSERT INTO picture (group_name,remote_file_name,journal_id,image_url,cover)
 VALUES (#{groupName},#{remoteFileName},#{journalId},#{imageUrl},#{cover})
     </insert>
+
+    <delete id="deletePicture" parameterType="String">
+        DELETE FROM picture WHERE journal_id=#{journalId}
+    </delete>
+
+    <delete id="deleteJournal" parameterType="String">
+        DELETE FROM journal WHERE id=#{journalId}
+    </delete>
+
 </mapper>

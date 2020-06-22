@@ -35,6 +35,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
      * @param registry
      */
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("").excludePathPatterns("/log", "/login", "/static/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/*").excludePathPatterns("/", "/log", "/login", "/static/**");
     }
 }
