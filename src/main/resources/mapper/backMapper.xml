@@ -10,6 +10,7 @@ journal.title,
 journal.periodical,
 journal.intro,
 journal.pviews,
+journal.time,
 picture.image_url
 FROM
 journal ,

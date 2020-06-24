@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.onoff.electronicjournal.mapper.UserMapper">
+    <select id="selectById" parameterType="String" resultMap="weChatUserResultMap">
+      SELECT * from wechatuser where open_id = #{openId}
+    </select>
+    <resultMap id="weChatUserResultMap" type="cn.onoff.electronicjournal.model.WeChatUser">
+        <result property="openId" column="open_id"/>
+        <result property="skey" column="skey"/>
+        <result property="createTime" column="create_time"/>
+        <result property="lastVisitTime" column="last_visit_time"/>
+        <result property="sessionKey" column="session_key"/>
+        <result property="city" column="city"/>
+        <result property="province" column="province"/>
+        <result property="country" column="country"/>
+        <result property="avatarUrl" column="avatar_url"/>
+        <result property="gender" column="gender"/>
+        <result property="nickName" column="nick_name"/>
+    </resultMap>
+    <insert id="insert" parameterType="cn.onoff.electronicjournal.model.WeChatUser">
+        INSERT INTO wechatuser(open_id,skey,create_time,last_visit_time,session_key,city,province,
+        country,avatar_url,gender,nick_name)VALUES(#{openId},#{skey},#{createTime},#{lastVisitTime},
+        #{sessionKey},#{city},#{province},#{country},#{avatarUrl},#{gender},#{nickName})
+    </insert>
+    <update id="updateById" parameterType="cn.onoff.electronicjournal.model.WeChatUser">
+       UPDATE wechatuser SET last_visit_time=#{lastVisitTime},skey=#{skey} WHERE open_id=#{openId}
+    </update>
+</mapper>

@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,7 +66,15 @@ public class BackServiceImpl implements BackService {
 
     @Override
     public List<JournalDO> queryJournal() {
-        return backMapper.queryJournal();
+        List<JournalDO> list = backMapper.queryJournal();
+        //时间戳转换
+        for (JournalDO journalDO : list) {
+            long timeStamp = Long.parseLong(journalDO.getTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
+            journalDO.setTime(sd);
+        }
+        return list;
     }
 
     @Override

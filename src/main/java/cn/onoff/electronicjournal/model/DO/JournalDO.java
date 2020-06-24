@@ -25,6 +25,8 @@ public class JournalDO implements Serializable {
 
     private String intro;
 
+    private String time;
+
     private String pviews;
 
     private String image_url;

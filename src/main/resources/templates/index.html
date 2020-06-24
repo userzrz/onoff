@@ -40,8 +40,8 @@
         </div>
     </nav>
 </div>
+<!--卡片展示-->
 <div class="d-flex align-content-center flex-wrap">
-    <!--卡片-->
     <div class="ml-2" th:each="j,iterStat:${Journals}">
         <div class="card" style="width: 18rem;">
             <img src="" th:src="${j.image_url}" class="card-img-top" alt="Responsive image">
@@ -59,5 +59,34 @@
         </div>
     </div>
 </div>
+<!--表格展示-->
+<!--<table class="table">-->
+<!--<thead class="thead-dark">-->
+<!--<tr>-->
+<!--<th scope="col">#</th>-->
+<!--<th scope="col">标题</th>-->
+<!--<th scope="col">刊期</th>-->
+<!--<th scope="col">简介</th>-->
+<!--<th scope="col">阅读量</th>-->
+<!--<th scope="col">发布时间</th>-->
+<!--<th scope="col">封面图</th>-->
+<!--<th scope="col">编辑</th>-->
+<!--<th scope="col">删除</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr th:each="j,iterStat:${Journals}">-->
+<!--<th scope="row" th:text="${j.id}">1</th>-->
+<!--<td th:text="${j.title}">Mark</td>-->
+<!--<td th:text="${j.periodical}">Otto</td>-->
+<!--<td th:text="${j.intro}">@mdo</td>-->
+<!--<td th:text="${j.pviews}">Mark</td>-->
+<!--<td th:text="${j.time}">Mark</td>-->
+<!--<td th:text="${j.image_url}"></td>-->
+<!--<td><a href="#" class="btn btn-outline-primary">编辑</a></td>-->
+<!--<td><a href="#" th:href="@{/delete(id=${j.id})}" onclick="return todel()" class="btn btn-outline-danger">删除</a></td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
 </body>
 </html>
