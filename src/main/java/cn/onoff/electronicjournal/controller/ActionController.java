@@ -20,7 +20,7 @@ public class ActionController {
 
     @GetMapping(value = "/deleteallpicture")
     public String deleteAllPictureDO() {
-        service.deleteAllPictureDO();
+        //service.deleteAllPictureDO();
         return "全部删除成功";
     }
 
