@@ -1,6 +1,8 @@
 package cn.onoff.electronicjournal.mapper;
 
 import cn.onoff.electronicjournal.model.WeChatUser;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Description TODO
@@ -8,6 +10,8 @@ import cn.onoff.electronicjournal.model.WeChatUser;
  * @Data 2020/6/23 13:21
  * @VERSION 1.0
  **/
+@Mapper
+@Repository("userMapper")
 public interface UserMapper {
 
     /**

@@ -4,6 +4,8 @@ import cn.onoff.electronicjournal.model.DO.JournalDO;
 import cn.onoff.electronicjournal.model.DO.PictureDO;
 import cn.onoff.electronicjournal.model.Journal;
 import cn.onoff.electronicjournal.model.Picture;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
  * @Data 2020/6/11 16:31
  * @VERSION 1.0
  **/
+@Mapper
+@Repository("backMapper")
 public interface BackMapper {
 
     /**
